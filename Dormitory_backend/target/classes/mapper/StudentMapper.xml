@@ -61,4 +61,42 @@
         SELECT COUNT(*) FROM student
     </select>
 
+    <select id="findByGender" resultType="dormBuild">
+        SELECT * FROM dorm_build where dormbuild_detail = #{gender}
+    </select>
+
+    <select id="findDormRoomsByBuildingId" resultType="DormRoom">
+        SELECT *
+        FROM dorm_room
+        <where>
+            <if test="dormBuilds != null and dormBuilds.size() > 0">
+                AND dormbuild_id IN
+                <foreach collection="dormBuilds" item="build" open="(" separator="," close=")">
+                    #{build.dormBuildId}
+                </foreach>
+            </if>
+            AND current_capacity != 4
+        </where>
+        LIMIT 1
+    </select>
+
+    <update id="updateDormRoom">
+        UPDATE dorm_room
+        SET
+        <choose>
+            <when test="dormRoom.firstBed == null">
+                first_bed = #{username}, current_capacity = current_capacity + 1
+            </when>
+            <when test="dormRoom.secondBed == null">
+                second_bed = #{username}, current_capacity = current_capacity + 1
+            </when>
+            <when test="dormRoom.thirdBed == null">
+                third_bed = #{username}, current_capacity = current_capacity + 1
+            </when>
+            <when test="dormRoom.fourthBed == null">
+                fourth_bed = #{username}, current_capacity = current_capacity + 1
+            </when>
+        </choose>
+        WHERE dormroom_id = #{dormRoom.dormRoomId}
+    </update>
 </mapper> 

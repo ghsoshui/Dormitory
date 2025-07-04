@@ -36,4 +36,11 @@ public interface StudentService {
      */
     Student registerStudent(Student student);
 
+    /**
+     * 给注册学生分配宿舍
+     */
+    String assignDorm(Student student);
+
+
+
 }

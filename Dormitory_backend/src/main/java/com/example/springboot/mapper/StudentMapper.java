@@ -1,5 +1,7 @@
 package com.example.springboot.mapper;
 
+import com.example.springboot.entity.DormBuild;
+import com.example.springboot.entity.DormRoom;
 import com.example.springboot.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,4 +26,10 @@ public interface StudentMapper {
     int deleteByUsername(@Param("username") String username);
 
     Long countAll();
+
+    List<DormBuild> findByGender(@Param("gender") String gender);
+
+    DormRoom findDormRoomsByBuildingId(@Param("dormBuilds") List<DormBuild> dormBuilds);
+
+    int updateDormRoom(@Param("username")String username, @Param("dormRoom") DormRoom dormRoom);
 }

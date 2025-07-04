@@ -1,11 +1,14 @@
 package com.example.springboot.service.impl;
 
 import com.example.springboot.ExceptionHandler.BusinessException;
+import com.example.springboot.entity.DormBuild;
+import com.example.springboot.entity.DormRoom;
 import com.example.springboot.entity.Student;
 import com.example.springboot.mapper.StudentMapper;
 import com.example.springboot.service.StudentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
@@ -101,5 +104,29 @@ public class StudentServiceImpl implements StudentService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public String assignDorm(Student student) {
+        // 得到学生的性别和学号
+        String gender = student.getGender();
+        String username = student.getUsername();
+        gender = gender+"宿舍";
+
+
+        // 在数据库中搜索符合性别且根据楼栋id寻找宿舍，遍历宿舍人数不为4的宿舍取第一条，如果没有更改返回信息
+        // 查询楼栋
+        List<DormBuild> dormBuilds = studentMapper.findByGender(gender);
+        // 使用楼栋id查询宿舍，遍历宿舍人数不为4的宿舍取第一条
+        DormRoom dormRoom = studentMapper.findDormRoomsByBuildingId(dormBuilds);
+        // 获取宿舍id，成功就开始查询并更新宿舍，获取失败就返回错误信息
+        if(dormRoom != null)
+        {
+            int result = studentMapper.updateDormRoom(username, dormRoom);
+            return "寝室分配成功!";
+        }
+
+
+        return "请联系管理员分配寝室！";
     }
 }

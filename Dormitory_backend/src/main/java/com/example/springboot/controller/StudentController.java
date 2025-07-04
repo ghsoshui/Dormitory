@@ -35,7 +35,8 @@ public class StudentController {
         
         Student registeredStudent = studentService.registerStudent(student);
         if (registeredStudent != null) {
-            return Result.success(registeredStudent);
+            String msg = studentService.assignDorm(student);
+            return Result.success(registeredStudent,msg);
         } else {
             return Result.error("-1", "注册失败，请稍后再试");
         }

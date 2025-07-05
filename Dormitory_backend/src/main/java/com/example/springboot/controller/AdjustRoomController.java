@@ -36,7 +36,7 @@ public class AdjustRoomController {
 
 
     /**
-     * 更新订单
+     * 申请调宿
      */
     @PutMapping("/update/{state}")
     public Result<?> update(@RequestBody AdjustRoom adjustRoom, @PathVariable Boolean state) {

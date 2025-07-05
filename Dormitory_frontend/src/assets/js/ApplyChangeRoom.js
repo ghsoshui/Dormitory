@@ -40,7 +40,17 @@ export default {
             pageSize: 10,
             total: 0,
             tableData: [],
-            form: {},
+            form: {
+                username: '',
+                name: '',
+                currentRoomId: '',
+                currentBedId: '',     // 👈 添加这一行，解决床位号不显示的关键
+                towardsRoomId: '',
+                towardsBedId: '',
+                applyTime: '',
+                finishTime: '',
+                state: ''
+            },
             dormRoomId: 0,
             orderState: false,
             judgeOption: false,
@@ -112,7 +122,7 @@ export default {
                 this.form.name = JSON.parse(sessionStorage.getItem("user")).name;
                 request.get("/room/getMyRoom/" + this.form.username).then((res) => {
                     this.form.currentRoomId = res.data.dormRoomId
-                    this.form.currentBedId = this.calBedNum(this.form.username, res.data)
+                    this.form.currentBedId = this.calBedNum(this.form.name, res.data)
                 });
                 this.judgeOption = true;
             });

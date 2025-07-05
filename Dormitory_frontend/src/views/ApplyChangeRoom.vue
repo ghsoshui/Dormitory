@@ -87,7 +87,7 @@
                 <el-input v-model="form.currentRoomId" disabled style="width: 80%"></el-input>
               </el-form-item>
               <el-form-item label="当前床位号" prop="currentBedId">
-                <el-input v-model="form.currentBedId" disabled style="width: 80%"></el-input>
+                <el-input v-model.number="form.currentBedId" disabled style="width: 80%"></el-input>
               </el-form-item>
               <el-form-item label="目标房间号" prop="towardsRoomId">
                 <el-input v-model.number="form.towardsRoomId" style="width: 80%"></el-input>

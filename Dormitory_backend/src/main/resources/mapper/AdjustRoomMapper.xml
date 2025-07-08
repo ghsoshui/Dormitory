@@ -38,8 +38,8 @@
             AND (
                 state LIKE CONCAT('%', #{search}, '%')
                 OR name LIKE CONCAT('%', #{search}, '%')
-                OR current_room_id LIKE CONCAT('%', #{search}, '%')
-                OR towards_room_id LIKE CONCAT('%', #{search}, '%')
+                OR currentroom_id LIKE CONCAT('%', #{search}, '%')
+                OR towardsroom_id LIKE CONCAT('%', #{search}, '%')
             )
         </if>
         ORDER BY id DESC

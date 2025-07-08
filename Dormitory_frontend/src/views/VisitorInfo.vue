@@ -23,7 +23,7 @@
         <!--    表格-->
         <el-table v-loading="loading" :data="tableData" border max-height="705" style="width: 100%">
           <el-table-column label="#" type="index"/>
-          <el-table-column label="姓名" prop="visitorName" width="150px"/>
+          <el-table-column label="姓名" prop="name" width="150px"/>
           <el-table-column
               :filter-method="filterTag"
               :filters="[
@@ -68,8 +68,8 @@
         <div>
           <el-dialog v-model="dialogVisible" title="操作" width="30%" @close="cancel">
             <el-form ref="form" :model="form" :rules="rules" label-width="120px">
-              <el-form-item label="姓名" prop="visitorName">
-                <el-input v-model="form.visitorName" clearable style="width: 50%"></el-input>
+              <el-form-item label="姓名" prop="name">
+                <el-input v-model="form.name" clearable style="width: 50%"></el-input>
               </el-form-item>
               <el-form-item label="性别" prop="gender">
                 <el-radio v-model="form.gender" label="男">男</el-radio>

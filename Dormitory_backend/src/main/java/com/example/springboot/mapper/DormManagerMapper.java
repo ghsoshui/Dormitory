@@ -13,23 +13,23 @@ public interface DormManagerMapper {
     List<DormManager> findAll();
 
     /**
-     * Finds DormManagers based on a search string, typically matching username or name.
-     * @param search The search criteria.
-     * @return A list of matching DormManagers.
+     * 根据搜索条件查找宿舍管理员，通常匹配用户名或姓名。
+     * @param search 搜索关键字。
+     * @return 匹配的宿舍管理员列表。
      */
     List<DormManager> findByCriteria(@Param("search") String search);
 
     int insert(DormManager dormManager);
 
     /**
-     * Updates a DormManager. Assumes username is the key for update.
-     * @param dormManager The DormManager object with updated details.
-     * @return The number of rows affected.
+     * 更新一个宿舍管理员对象。假设用户名是更新的关键字段。
+     * @param dormManager 包含更新信息的宿舍管理员对象。
+     * @return 影响的行数。
      */
     int update(DormManager dormManager);
 
     int deleteByUsername(@Param("username") String username);
 
-    // Login method, similar to Admin
+    // 登录方法，类似于管理员
     DormManager findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 }

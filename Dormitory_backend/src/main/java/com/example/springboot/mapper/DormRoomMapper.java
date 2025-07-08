@@ -13,38 +13,38 @@ public interface DormRoomMapper {
     List<DormRoom> findAll();
 
     /**
-     * Finds DormRooms based on a search string.
-     * Search could be by dormRoomId (e.g., "101"), or dormBuildId.
-     * @param search The search criteria.
-     * @return A list of matching DormRooms.
+     * 根据搜索字符串查找宿舍房间。
+     * 搜索可以基于 dormRoomId（例如 "101"），或 dormBuildId。
+     * @param search 搜索条件。
+     * @return 匹配的宿舍房间列表。
      */
     List<DormRoom> findByCriteria(@Param("search") String search);
 
     int insert(DormRoom dormRoom);
 
-    int update(DormRoom dormRoom); // Assumes dormRoomId is in the object for WHERE clause
+    int update(DormRoom dormRoom); // 假设对象中包含 dormRoomId 用于 WHERE 条件
 
     int deleteByRoomId(@Param("dormRoomId") Integer dormRoomId);
 
-    // For judgeHadBed: find a room where any bed is occupied by the studentName
+    // 根据学生姓名查找有床位被占用的宿舍房间
     DormRoom findByOccupant(@Param("studentName") String studentName);
 
-    // For noFullRoom: count rooms where currentCapacity < maxCapacity
+    // 统计未满员的宿舍房间数量
     int countNonFullRooms();
 
-    // For deleteBedInfo: This is complex, involves setting a bed field to null and decrementing currentCapacity.
-    // This might be better handled by fetching the room, modifying in service, then calling update.
-    // Or a specific mapper method:
+    // 删除床位信息：将指定床铺字段置空并减少当前人数。
+    // 此操作更适合先查询房间数据，在服务层处理后再调用更新。
+    // 或者使用特定的映射方法：
     int clearBedAndUpdateCapacity(@Param("dormRoomId") Integer dormRoomId, @Param("bedNameColumn") String bedNameColumn);
 
-    // For selectHaveRoomStuNum: sum of currentCapacity across all rooms.
+    // 统计所有宿舍房间的已住人数总和
     Long sumCurrentCapacity();
 
-    // For getEachBuildingStuNum: sum of currentCapacity for a specific dormBuildId.
+    // 统计指定宿舍楼的已住人数总和
     Long sumCurrentCapacityByBuilding(@Param("dormBuildId") Integer dormBuildId);
 
-    // For checkBedState: check if a specific bed in a specific room is occupied.
-    // This can be done by findByRoomId and checking the field in service, or a specific query.
-    // Let's assume findByRoomId and service logic for now.
+    // 检查指定房间的特定床位是否被占用。
+    // 可以通过 findByRoomId 获取房间后在服务层检查，或编写特定查询。
+    // 这里暂定使用 findByRoomId 和服务层逻辑处理。
 
 }

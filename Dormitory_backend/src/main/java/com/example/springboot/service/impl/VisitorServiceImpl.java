@@ -31,7 +31,7 @@ public class VisitorServiceImpl implements VisitorService {
     @Override
     public int update(Visitor visitor) {
         if (visitor.getId() == null) {
-            return 0; // Or throw exception
+            return 0; // 或者抛出异常
         }
         return visitorMapper.update(visitor);
     }

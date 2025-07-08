@@ -10,15 +10,16 @@ public interface RepairMapper {
 
     Repair findById(@Param("id") Integer id);
 
-    List<Repair> findAll(); // For general admin/manager view, ordered by build time
+    List<Repair> findAll(); // 供管理员或维修人员查看，按创建时间排序
 
-    List<Repair> findByCriteria(@Param("search") String search); // Search by title, content
+    List<Repair> findByCriteria(@Param("search") String search); // 按标题或内容搜索
 
+    // 根据维修人和搜索条件查找报修记录
     List<Repair> findByRepairerAndCriteria(@Param("repairerName") String repairerName, @Param("search") String search);
 
     int insert(Repair repair);
 
-    int update(Repair repair); // Typically updates state and finish_time
+    int update(Repair repair); // 通常用于更新状态和完成时间
 
     int deleteById(@Param("id") Integer id);
 

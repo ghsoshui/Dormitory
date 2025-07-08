@@ -23,7 +23,7 @@ public class DormManagerController {
      */
     @PostMapping("/add")
     public Result<?> add(@RequestBody DormManager dormManager) {
-        // Consider checking if username already exists via getDormManagerByUsername
+        // 建议通过 getDormManagerByUsername 方法检查用户名是否已存在
         int i = dormManagerService.addDormManager(dormManager);
         if (i > 0) {
             return Result.success();
@@ -73,11 +73,11 @@ public class DormManagerController {
      * 宿管登录
      */
     @PostMapping("/login")
-    public Result<?> login(@RequestBody User user, HttpSession session) { // Assuming User DTO is still intended for login request
+    public Result<?> login(@RequestBody User user, HttpSession session) { // 假设 User DTO 仍用于登录请求
         DormManager dormManager = dormManagerService.login(user.getUsername(), user.getPassword());
         if (dormManager != null) {
             session.setAttribute("Identity", "dormManager");
-            session.setAttribute("User", dormManager); // Store DormManager object
+            session.setAttribute("User", dormManager); // 存储宿管对象
             return Result.success(dormManager);
         } else {
             return Result.error("-1", "用户名或密码错误");

@@ -31,7 +31,7 @@ public class NoticeServiceImpl implements NoticeService {
         if (StringUtils.hasText(search)) {
             noticeList = noticeMapper.findByTitle(search);
         } else {
-            noticeList = noticeMapper.findAll(); // findAll already orders by release_time desc
+            noticeList = noticeMapper.findAll(); // findAll 方法已经按发布时间降序排序
         }
         return new PageInfo<>(noticeList);
     }
@@ -39,9 +39,9 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public int updateNotice(Notice notice) {
         if (notice.getId() == null) {
-            return 0; // Or throw exception
+            return 0; // 或者抛出异常
         }
-        // Consider updating releaseTime if that's part of the update logic
+        // 如果更新逻辑中包含发布时间，可考虑一并更新
         return noticeMapper.update(notice);
     }
 

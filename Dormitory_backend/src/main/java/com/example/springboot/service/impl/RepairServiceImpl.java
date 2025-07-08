@@ -25,8 +25,8 @@ public class RepairServiceImpl implements RepairService {
 
     @Override
     public int addRepair(Repair repair) {
-        // Consider setting orderBuildTime automatically, and state to '未完成' by default
-        // e.g., repair.setOrderBuildTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        // 可考虑自动设置报修时间，并将状态默认设为“未完成”
+        // 示例：repair.setOrderBuildTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         // repair.setState("未完成");
         return repairMapper.insert(repair);
     }
@@ -46,7 +46,7 @@ public class RepairServiceImpl implements RepairService {
     @Override
     public PageInfo<Repair> findRepairsByRepairer(Integer pageNum, Integer pageSize, String search, String repairerName) {
         PageHelper.startPage(pageNum, pageSize);
-        // repairerName should not be empty for this specific search
+        // 此特定查询中 repairerName 不应为空
         List<Repair> repairList = repairMapper.findByRepairerAndCriteria(repairerName, search);
         return new PageInfo<>(repairList);
     }
@@ -54,7 +54,7 @@ public class RepairServiceImpl implements RepairService {
     @Override
     public int updateRepair(Repair repair) {
         if (repair.getId() == null) {
-            return 0; // Or throw exception
+            return 0;  // 如果 ID 为空，返回 0或抛出异常
         }
 
         return repairMapper.update(repair);

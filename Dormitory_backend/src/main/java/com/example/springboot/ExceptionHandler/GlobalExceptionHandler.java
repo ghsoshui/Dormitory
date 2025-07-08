@@ -5,12 +5,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @Date: 2025/05/16/20:59
- * @Description: 添加全局异常处理
- */
+// 全局异常处理
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

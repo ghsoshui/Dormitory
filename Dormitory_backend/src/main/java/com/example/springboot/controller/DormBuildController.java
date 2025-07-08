@@ -22,11 +22,8 @@ public class DormBuildController {
      */
     @PostMapping("/add")
     public Result<?> add(@RequestBody DormBuild dormBuild) {
-        // Перед добавлением можно проверить, существует ли здание с таким dormBuildId или dormBuildName
-        // Например, через dormBuildService.findDormBuildByName(dormBuild.getDormBuildName()) != null
-        // или создав метод findByDormBuildId в сервисе и маппере
         int i = dormBuildService.addDormBuild(dormBuild);
-        if (i > 0) { // Changed from i == 1 for broader compatibility (e.g., if insert returns ID)
+        if (i > 0) {
             return Result.success();
         } else {
             return Result.error("-1", "添加失败");

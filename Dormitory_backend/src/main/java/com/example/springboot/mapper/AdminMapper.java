@@ -37,7 +37,7 @@ public interface AdminMapper {
      */
     int updateByUsername(Admin admin);
 
-    // 根据您的 SQL 文件，admin 表的主键是 username，所以通常不会有 updateById 这样的方法，除非 id 是指其他。
+    // 根据SQL 文件，admin 表的主键是 username，所以通常不会有 updateById 这样的方法，除非 id 是指其他。
     // 如果需要其他查询，例如查询所有管理员，可以添加如下方法：
     // List<Admin> findAll();
 }

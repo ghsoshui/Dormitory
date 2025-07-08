@@ -52,8 +52,8 @@ public class FileController {
         if (dotIndex > -1 && dotIndex < originalFilename.length() - 1) {
             fileType = originalFilename.substring(dotIndex);
         } else {
-            // Handle files with no extension or invalid names if necessary
-            // For now, let's allow it but it might cause issues for file type recognition
+            // 如果需要，处理没有扩展名或文件名无效的情况
+            // 目前允许此类文件名，但这可能会导致文件类型识别问题
         }
 
         String uid = new UID().produceUID();

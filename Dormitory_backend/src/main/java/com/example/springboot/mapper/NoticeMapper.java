@@ -13,15 +13,15 @@ public interface NoticeMapper {
     List<Notice> findAll();
 
     /**
-     * Finds Notices by title (case-insensitive, partial match).
-     * @param title The search criteria for the title.
-     * @return A list of matching Notices.
+     * 根据标题查找通知（不区分大小写，支持模糊匹配）。
+     * @param title 标题搜索条件。
+     * @return 匹配的通知列表。
      */
     List<Notice> findByTitle(@Param("title") String title);
 
     /**
-     * Finds all Notices, ordered by release_time descending.
-     * @return A list of all Notices sorted by release time.
+     * 查找所有通知，并按发布时间降序排序。
+     * @return 按发布时间排序的通知列表。
      */
     List<Notice> findAllOrderByReleaseTimeDesc();
 

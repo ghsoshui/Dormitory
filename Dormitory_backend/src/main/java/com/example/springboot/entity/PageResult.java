@@ -6,13 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @Author: 李阳
- * @Date: 2025/05/16/17:43
- * @Description:
- */
+// 分页结果
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

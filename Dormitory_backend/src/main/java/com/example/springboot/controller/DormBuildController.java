@@ -39,7 +39,7 @@ public class DormBuildController {
             return Result.error("-1", "更新失败：ID不能为空");
         }
         int i = dormBuildService.updateDormBuild(dormBuild);
-        if (i > 0) { // Changed from i == 1
+        if (i > 0) {
             return Result.success();
         } else {
             return Result.error("-1", "更新失败");
@@ -49,7 +49,7 @@ public class DormBuildController {
     /**
      * 楼宇删除
      */
-    @DeleteMapping("/delete/{id}") // Changed path variable to id to match service/mapper
+    @DeleteMapping("/delete/{id}") // 将路径变量改为 id 以匹配 service/mapper 的参数
     public Result<?> delete(@PathVariable Integer id) {
         int i = dormBuildService.deleteDormBuildById(id);
         if (i > 0) { // Changed from i == 1
@@ -67,7 +67,7 @@ public class DormBuildController {
                               @RequestParam(defaultValue = "10") Integer pageSize,
                               @RequestParam(defaultValue = "") String search) {
         PageInfo<DormBuild> pageInfo = dormBuildService.findPaginatedDormBuilds(pageNum, pageSize, search);
-        return Result.success(pageInfo); // Return PageResult directly
+        return Result.success(pageInfo);
     }
 
     /**
@@ -77,7 +77,7 @@ public class DormBuildController {
     public Result<?> getBuildingName() {
         List<DormBuild> allBuilds = dormBuildService.findAllDormBuilds();
         List<Integer> buildingIds = allBuilds.stream()
-                .map(DormBuild::getDormBuildId) // Using method reference
+                .map(DormBuild::getDormBuildId) // 使用方法引用
                 .collect(Collectors.toList());
         return !buildingIds.isEmpty() ?
                 Result.success(buildingIds) : Result.error("-1", "查询失败"); // Consider returning success with empty list
